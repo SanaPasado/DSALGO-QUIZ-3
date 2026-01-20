@@ -44,3 +44,14 @@ CORS
 Notes
 - Do not commit your `.env` files. Use the provided `.env.example` files.
 - `backend/create_db_django.py` seeds `backend/db.sqlite3` with sample products.
+
+Branch information
+- The Quiz 2 backend implementation and related changes are on the `quiz2` branch.
+  To view or switch to that branch locally:
+
+```powershell
+git fetch origin
+git checkout quiz2
+```
+
+If you do not have the `quiz2` branch locally, the `git fetch` command above will retrieve it from the remote.
