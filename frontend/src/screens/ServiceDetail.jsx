@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
-import products from '../products';
+import products from '../stockphotos';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
