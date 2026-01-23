@@ -6,6 +6,7 @@ import Homescreen from './screens/Homescreen';
 import About from './screens/About';
 import Contact from './screens/Contact';
 import ServiceDetail from './screens/ServiceDetail';
+import UsersList from './screens/UsersList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/photo/:id" element={<ServiceDetail />} />
+          <Route path="/users" element={<UsersList />} />
         </Routes>
         <Footer />
       </Router>

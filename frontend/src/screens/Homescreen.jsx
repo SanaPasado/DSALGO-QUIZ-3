@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Row, Col} from 'react-bootstrap'
 import Photo from '../components/Photo'
 import Banner from '../components/Banner'
 import Layout from '../components/Layout'
-import stockphotos from '../stockphotos'
 
 function Homescreen() {
   const [photos, setPhotos] = useState([])
 
   useEffect(() => {
-    setPhotos(stockphotos)
+    async function fetchPhotos() {
+      const { data } = await axios.get('http://127.0.0.1:8000/api/stockphotos/')
+      setPhotos(data)
+    }
+    fetchPhotos()
   }, [])
 
   return (
