@@ -4,11 +4,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homescreen from './screens/Homescreen';
 import About from './screens/About';
-import Cart from './screens/Cart';
 import Contact from './screens/Contact';
-import CustomOrders from './screens/CustomOrders';
+import ServiceDetail from './screens/ServiceDetail';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProductDetail from './screens/ProductDetail';
 
 function App() {
   return (
@@ -19,9 +17,7 @@ function App() {
           <Route path="/" element={<Homescreen />} exact />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/custom-orders" element={<CustomOrders />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path ="/product/:id" element={<ProductDetail />} />
+          <Route path="/photo/:id" element={<ServiceDetail />} />
         </Routes>
         <Footer />
       </Router>

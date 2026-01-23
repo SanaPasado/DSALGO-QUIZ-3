@@ -1,11 +1,17 @@
-import React from 'react'
-import products from '../stockphotos'
+import React, { useState, useEffect } from 'react'
 import { Row, Col} from 'react-bootstrap'
-import Product from '../components/Product'
+import Photo from '../components/Photo'
 import Banner from '../components/Banner'
 import Layout from '../components/Layout'
+import stockphotos from '../stockphotos'
 
 function Homescreen() {
+  const [photos, setPhotos] = useState([])
+
+  useEffect(() => {
+    setPhotos(stockphotos)
+  }, [])
+
   return (
     <Layout>
 
@@ -16,9 +22,9 @@ function Homescreen() {
       </div>
 
       <Row>
-        {products.map((product) => (
-          <Col key={product._id} sm={12} md={6} lg={6} xl={6}>
-            <Product product={product} />
+        {photos.map((photo) => (
+          <Col key={photo._id} sm={12} md={6} lg={6} xl={6}>
+            <Photo photo={photo} />
           </Col>
         ))}
       </Row>
