@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Row, Col} from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
 import Service from '../components/Service'
 import Banner from '../components/Banner'
 import Layout from '../components/Layout'
+import { listServices } from '../actions/serviceActions'
 
 function Homescreen() {
-  const [services, setServices] = useState([])
+  const dispatch = useDispatch()
+  const serviceList = useSelector(state => state.serviceList)
+  const { loading, error, services } = serviceList
 
   useEffect(() => {
-    async function fetchServices() {
-      const { data } = await axios.get('http://127.0.0.1:8000/api/services')
-      setServices(data)
-    }
-    fetchServices()
-  }, [])
+    dispatch(listServices())
+  }, [dispatch])
 
   return (
     <Layout>
@@ -22,14 +21,16 @@ function Homescreen() {
         <Banner />
       </div>
    
-
-      <Row>
-        {services.map((service) => (
-          <Col key={service.id} sm={12} md={6} lg={6} xl={6}>
-            <Service service={service} />
-          </Col>
-        ))}
-      </Row>
+      {loading ? <p>Loading...</p>
+        : error ? <p>Error: {error}</p>
+          : <Row>
+            {services.map((service) => (
+              <Col key={service.id} sm={12} md={6} lg={6} xl={6}>
+                <Service service={service} />
+              </Col>
+            ))}
+          </Row>
+      }
 
     </Layout>
   )

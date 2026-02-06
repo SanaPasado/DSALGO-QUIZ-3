@@ -6,7 +6,7 @@ import  Rating  from './Rating'
 export function Service({service}) {
   return (
     <Card className="h-100">
-      <Link to="/">
+      <Link to={`/services/${service.id}`}>
         <Card.Img variant="top" src={service.image} />
       </Link>
 

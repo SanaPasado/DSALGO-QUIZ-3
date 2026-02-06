@@ -4,6 +4,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homescreen from './screens/Homescreen';
 import ServiceDetail from './screens/ServiceDetail';
+import UsersList from './screens/UsersList';
+import UserProfile from './screens/UserProfile';
+import RegisterUser from './screens/RegisterUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -13,7 +16,10 @@ function App() {
         <Header /> 
         <Routes>
           <Route path="/" element={<Homescreen />} exact />
-          <Route path= "/services/:pk" element = {<ServiceDetail />} />
+          <Route path="/services/:pk" element={<ServiceDetail />} />
+          <Route path="/users" element={<UsersList />} />
+          <Route path="/users/:userId" element={<UserProfile />} />
+          <Route path="/register" element={<RegisterUser />} />
         </Routes>
         <Footer />
       </Router>

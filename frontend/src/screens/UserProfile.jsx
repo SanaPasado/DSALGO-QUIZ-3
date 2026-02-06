@@ -12,7 +12,7 @@ function UserProfile() {
   useEffect(() => {
     async function fetchUser() {
       const token = localStorage.getItem('access_token')
-      const { data } = await axios.get(`http://127.0.0.1:8000/api/users/${userId}/`, {
+      const { data } = await axios.get(`http://127.0.0.1:8000/api/user-profile/${userId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       setUser(data)

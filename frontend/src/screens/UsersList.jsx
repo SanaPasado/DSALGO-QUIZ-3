@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Row, Col, Container } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Row, Col, Container, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import Layout from '../components/Layout'
+import { listUsers } from '../actions/userActions'
 
 function UsersList() {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+  const userList = useSelector(state => state.userList)
+  const { loading, users } = userList
 
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const token = localStorage.getItem('access_token')
-        const { data } = await axios.get('http://127.0.0.1:8000/api/users/', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        })
-        setUsers(data)
-      } catch (error) {
-        console.log('Error fetching users:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchUsers()
-  }, [])
+    const token = localStorage.getItem('access_token')
+    dispatch(listUsers(token))
+  }, [dispatch])
 
   if (loading) {
     return <Layout><div style={{ padding: '40px', textAlign: 'center' }}>Loading users...</div></Layout>
@@ -31,7 +22,12 @@ function UsersList() {
   return (
     <Layout>
       <Container className="my-5">
-        <h2 className="mb-4">Users List</h2>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2>Users List</h2>
+          <Link to="/register">
+            <Button variant="primary">+ Create User</Button>
+          </Link>
+        </div>
         
         <Row>
           {users.length > 0 ? (
@@ -64,7 +60,7 @@ function UsersList() {
                     className="btn btn-sm btn-primary mt-3"
                     onClick={(e) => {
                       e.stopPropagation()
-                      window.location.href = `/user/${user.id}`
+                      window.location.href = `/users/${user.id}`
                     }}
                   >
                     View Profile
@@ -75,7 +71,10 @@ function UsersList() {
           ) : (
             <Col xs={12}>
               <div style={{ textAlign: 'center', padding: '40px' }}>
-                <p>No users found</p>
+                <p style={{ fontSize: '18px', marginBottom: '20px' }}>No users found</p>
+                <Link to="/register">
+                  <Button variant="primary">Create First User</Button>
+                </Link>
               </div>
             </Col>
           )}

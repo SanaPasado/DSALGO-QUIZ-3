@@ -28,14 +28,14 @@ def getRoutes(request):
 @api_view(['GET'])
 def getServices(request):
     services = Service.objects.all()
-    serializer = ServiceSerializer(services, many=True)
+    serializer = ServiceSerializer(services, many=True, context={'request': request})
     return Response(serializer.data)
     
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def getServiceDetail(request, pk):
     service = Service.objects.get(pk=pk)
-    serializer = ServiceSerializer(service, many=False)
+    serializer = ServiceSerializer(service, many=False, context={'request': request})
     return Response(serializer.data)
 
 #Rule: parameters must 

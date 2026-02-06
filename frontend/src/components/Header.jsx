@@ -12,17 +12,11 @@ function Header() {
           <Link to="/" className="nav-link">
             Home
           </Link>
-          <Link to="/about" className="nav-link">
-            About
+          <Link to="/register" className="nav-link">
+            Register
           </Link>
-          <Link to="/contact" className="nav-link">
-            Contact
-          </Link>
-           <Link to="/userprofile" className="nav-link">
-            Profile
-          </Link>
-           <Link to="/userlist" className="nav-link">
-            Users
+          <Link to="/users" className="nav-link">
+            Users (Admin)
           </Link>
 
           
